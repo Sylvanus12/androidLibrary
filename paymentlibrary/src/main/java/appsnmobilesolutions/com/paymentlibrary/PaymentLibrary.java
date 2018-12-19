@@ -2,6 +2,7 @@ package appsnmobilesolutions.com.paymentlibrary;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -66,6 +67,7 @@ public class PaymentLibrary {
                 paymentTokenUrl = sendTokenJson(object.getString("token"));
             } else if (object.getString("resp_code").equals("100")) {
                 //paymentTokenUrl = sendTokenJson("222222");
+                Toast.makeText(context, object.getString("resp_desc"), Toast.LENGTH_LONG).show();
             }
         } catch (JSONException e) {
             e.printStackTrace();
