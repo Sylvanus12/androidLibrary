@@ -9,6 +9,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 
 import com.google.gson.JsonObject;
 
@@ -23,8 +24,9 @@ public class MainActivity extends AppCompatActivity {
 
 
     WebView webView;
-    EditText editAmount,edtReference;
+    EditText editAmount, edtReference;
     Button btnSend;
+    LinearLayout linearLayout;
 
     PaymentLibrary paymentLibrary;
 
@@ -34,11 +36,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        editAmount =findViewById(R.id.edtAmount);
-        edtReference =findViewById(R.id.edtReference);
-        btnSend =findViewById(R.id.btnSend);
+        editAmount = findViewById(R.id.edtAmount);
+        edtReference = findViewById(R.id.edtReference);
+        btnSend = findViewById(R.id.btnSend);
 
         webView = findViewById(R.id.webView);
+
+        linearLayout = findViewById(R.id.linear);
 
         paymentLibrary = new PaymentLibrary(MainActivity.this);
 
@@ -49,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
 //        paymentLibrary.sendJson("Hellworld");
 
 
-
         // paymentLibrary.sendTokenJson();
         // Log.d("Display", paymentLibrary.getPaymentTokenUrl());
 
@@ -57,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    sendReq(editAmount.getText().toString(),edtReference.getText().toString());
+                    sendReq(editAmount.getText().toString(), edtReference.getText().toString());
                 } catch (ExecutionException e) {
                     e.printStackTrace();
                 } catch (InterruptedException e) {
@@ -71,10 +74,10 @@ public class MainActivity extends AppCompatActivity {
         String timeStamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
 
         JsonObject object = new JsonObject();
-        object.addProperty("client_id", PaymentLibrary.getUserClientId());
+        object.addProperty("service_id", PaymentLibrary.getUserServiceId());
         object.addProperty("reference", ref);
         object.addProperty("amount", amount);
-        object.addProperty("exttrid", "D0338");
+        object.addProperty("exttrid", "D55649");
         object.addProperty("callback_url", "");
         object.addProperty("trans_type", "DR");
         object.addProperty("ts", timeStamp);
@@ -82,10 +85,10 @@ public class MainActivity extends AppCompatActivity {
 
         Log.d("OBJ", String.valueOf(object));
 
-        // String returnedStr =
+
         PaymentLibrary.sendJson(String.valueOf(object));
 
-//        Toast.makeText(this, returnedStr, Toast.LENGTH_LONG).show();
+
         doIt();
     }
 

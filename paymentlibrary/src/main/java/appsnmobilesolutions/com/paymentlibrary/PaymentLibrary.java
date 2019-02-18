@@ -27,7 +27,7 @@ public class PaymentLibrary {
 
     public static String user_secret_key;
     public static String user_client_key;
-    public static String user_client_id;
+    public static String user_service_id;
 
     public static String paymentTokenUrl;
     public static String paymentT;
@@ -38,10 +38,10 @@ public class PaymentLibrary {
         PaymentLibrary.context = context;
     }
 
-    public static void add_keys(String secret_key, String client_key, String client_id) {
+    public static void add_keys(String secret_key, String client_key, String service_id) {
         user_secret_key = secret_key;
         user_client_key = client_key;
-        user_client_id = client_id;
+        user_service_id = service_id;
     }
 
 
@@ -126,7 +126,7 @@ public class PaymentLibrary {
         return user_client_key;
     }
 
-    public static String getUserClientId() {
-        return user_client_id;
+    public static String getUserServiceId() {
+        return user_service_id;
     }
 }
