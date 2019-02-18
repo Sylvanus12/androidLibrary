@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     WebView webView;
-    EditText editAmount, edtReference;
+    EditText editAmount, edtReference,edtExtrid,edtCallback_url,edtNickname;
     Button btnSend;
     LinearLayout linearLayout;
 
@@ -38,6 +38,9 @@ public class MainActivity extends AppCompatActivity {
 
         editAmount = findViewById(R.id.edtAmount);
         edtReference = findViewById(R.id.edtReference);
+        edtExtrid = findViewById(R.id.edtExtrid);
+        edtCallback_url = findViewById(R.id.edtCallback_url);
+        edtNickname = findViewById(R.id.edtNickname);
         btnSend = findViewById(R.id.btnSend);
 
         webView = findViewById(R.id.webView);
@@ -60,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    sendReq(editAmount.getText().toString(), edtReference.getText().toString());
+                    sendReq(editAmount.getText().toString().trim(), edtReference.getText().toString().trim(),edtExtrid.getText().toString().trim(),edtCallback_url.getText().toString().trim(),edtNickname.getText().toString().trim());
                 } catch (ExecutionException e) {
                     e.printStackTrace();
                 } catch (InterruptedException e) {
@@ -70,18 +73,18 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void sendReq(String amount, String ref) throws ExecutionException, InterruptedException {
+    private void sendReq(String amount, String ref, String exttrid,String callback, String nickname) throws ExecutionException, InterruptedException {
         String timeStamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
 
         JsonObject object = new JsonObject();
         object.addProperty("service_id", PaymentLibrary.getUserServiceId());
         object.addProperty("reference", ref);
         object.addProperty("amount", amount);
-        object.addProperty("exttrid", "D55649");
-        object.addProperty("callback_url", "");
+        object.addProperty("exttrid", exttrid);
+        object.addProperty("callback_url", callback);
         object.addProperty("trans_type", "DR");
         object.addProperty("ts", timeStamp);
-        object.addProperty("nickname", "rhymez");
+        object.addProperty("nickname", nickname);
 
         Log.d("OBJ", String.valueOf(object));
 

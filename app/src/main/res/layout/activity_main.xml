@@ -39,6 +39,23 @@
             android:inputType="text"
             android:hint="Exter" />
 
+        <EditText
+            android:id="@+id/edtCallback_url"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text"
+            android:hint="Callback URL" />
+
+
+        <EditText
+            android:id="@+id/edtNickname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text"
+            android:hint="Nickname" />
+
         <Button
             android:id="@+id/btnSend"
             android:layout_width="match_parent"

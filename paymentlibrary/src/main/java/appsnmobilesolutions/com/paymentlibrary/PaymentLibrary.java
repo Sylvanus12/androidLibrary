@@ -65,7 +65,7 @@ public class PaymentLibrary {
 
             if (object.getString("resp_code").equals("000")) {
                 paymentTokenUrl = sendTokenJson(object.getString("token"));
-            } else if (object.getString("resp_code").equals("100")) {
+            } else{
                 //paymentTokenUrl = sendTokenJson("222222");
                 Toast.makeText(context, object.getString("resp_desc"), Toast.LENGTH_LONG).show();
             }
