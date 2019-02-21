@@ -55,8 +55,8 @@ public class PaymentLibrary {
         String asdas = String.valueOf(Ion.with(context)
                 .load(SEND_REQUEST_URL)
                 .setLogging("payment request logs", Log.DEBUG)
-                .setHeader("Authorization", user_client_key + ":" + hmac_hex)
-                .setHeader("Sdk_src", "SDK")
+                .addHeader("sdk", "SDK")
+                .addHeader("Authorization", user_client_key + ":" + hmac_hex)
                 .setJsonObjectBody(jObject)
                 .asJsonObject()
                 .get());
@@ -65,7 +65,9 @@ public class PaymentLibrary {
             JSONObject object = new JSONObject(asdas);
 
             if (object.getString("resp_code").equals("000")) {
-                paymentTokenUrl = sendTokenJson(object.getString("token"));
+               // paymentTokenUrl = sendTokenJson(object.getString("redirect_url"));
+                paymentTokenUrl = object.getString("redirect_url");
+                Toast.makeText(context, object.getString("resp_desc"), Toast.LENGTH_LONG).show();
             } else{
                 //paymentTokenUrl = sendTokenJson("222222");
                 Toast.makeText(context, object.getString("resp_desc"), Toast.LENGTH_LONG).show();

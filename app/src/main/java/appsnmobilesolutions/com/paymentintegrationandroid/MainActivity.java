@@ -96,9 +96,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void doIt() {
+
+        webView.setVisibility(View.VISIBLE);
         webView.setWebViewClient(new WebViewClient());
 
         System.out.println("MainAct22----------------------------------" + PaymentLibrary.getPaymentTokenUrl() + "--------------------------------------");
+        Log.d("FINAL_URL", PaymentLibrary.getPaymentTokenUrl());
         webView.loadUrl(PaymentLibrary.getPaymentTokenUrl());
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
