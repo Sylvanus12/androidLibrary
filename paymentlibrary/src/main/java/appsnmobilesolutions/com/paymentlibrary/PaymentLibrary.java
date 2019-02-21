@@ -56,6 +56,7 @@ public class PaymentLibrary {
                 .load(SEND_REQUEST_URL)
                 .setLogging("payment request logs", Log.DEBUG)
                 .setHeader("Authorization", user_client_key + ":" + hmac_hex)
+                .setHeader("Sdk_src", "SDK")
                 .setJsonObjectBody(jObject)
                 .asJsonObject()
                 .get());
