@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
         object.addProperty("ts", timeStamp);
         object.addProperty("nickname", nickname);
 
-        Log.d("OBJ", String.valueOf(object));
+        Log.d("Json Objects", String.valueOf(object));
 
 
         PaymentLibrary.sendJson(String.valueOf(object));
@@ -100,8 +100,9 @@ public class MainActivity extends AppCompatActivity {
         webView.setVisibility(View.VISIBLE);
         webView.setWebViewClient(new WebViewClient());
 
-        System.out.println("MainAct22----------------------------------" + PaymentLibrary.getPaymentTokenUrl() + "--------------------------------------");
-        Log.d("FINAL_URL", PaymentLibrary.getPaymentTokenUrl());
+        System.out.println("REDIRECT URL ----------------------------------" + PaymentLibrary.getPaymentTokenUrl() + "--------------------------------------");
+
+        System.out.println("FINAL_URL"+PaymentLibrary.getPaymentTokenUrl());
         webView.loadUrl(PaymentLibrary.getPaymentTokenUrl());
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);

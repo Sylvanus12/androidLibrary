@@ -52,7 +52,7 @@ public class PaymentLibrary {
         JsonParser jsonParser = new JsonParser();
         JsonObject jObject = (JsonObject) jsonParser.parse(jsonString);
 
-        String asdas = String.valueOf(Ion.with(context)
+        String request_response = String.valueOf(Ion.with(context)
                 .load(SEND_REQUEST_URL)
                 .setLogging("payment request logs", Log.DEBUG)
                 .addHeader("sdk", "SDK")
@@ -62,7 +62,7 @@ public class PaymentLibrary {
                 .get());
 
         try {
-            JSONObject object = new JSONObject(asdas);
+            JSONObject object = new JSONObject(request_response);
 
             if (object.getString("resp_code").equals("000")) {
                // paymentTokenUrl = sendTokenJson(object.getString("redirect_url"));
@@ -77,9 +77,7 @@ public class PaymentLibrary {
         }
 
         Log.d("hex_received", hmac_hex);
-        System.out.println("--------------------Request Demo--------------" + asdas + "--------------------------------------");
-
-        System.out.println("1---------------------------------- return theurl = " + paymentTokenUrl + "--------------------------------------");
+        System.out.println("----------------Response Received------------------" + request_response + "--------------------------------------");
     }
 
 
